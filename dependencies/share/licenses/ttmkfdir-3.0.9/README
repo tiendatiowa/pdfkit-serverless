@@ -1,0 +1,90 @@
+INTRODUCTION
+============
+
+Originally written by Joerg Pommnitz,ttmkfdir is a tool to create valid and 
+complete fonts.scale file from TrueType fonts. It is very useful when you plan 
+to use a TrueType enabled font server that is based on the X11R6 sample 
+implementation (xfsft for instance). Great care has been taken to correctly 
+identify the encodings that a given TrueType font supports. 
+
+The ttmkfdir comes with Red Hat Linux has experienced quite some modifications 
+or improvements, include:
+
+ - migration to FreeType 2 library
+ - more accurate checking for big font files
+ - support for both two X core font backends, Freetype and XTT
+ - Truetype collection(ttc) font file support
+ - additional CJK friendly features
+ - bug fixes
+
+USAGE
+=====
+
+Here is the detailed usage of Red Hat version of ttmkfdir. 
+ 
+ --help (or -h)
+ 
+   To get the full contents of help message.
+
+ --encoding (or -e) <encodings.dir>
+
+   ttmkfdir is doing its job by checking each TrueType font file against 
+   fontenc layer, please refer www.xfree86.org/current/fonts.html 
+   for details. Default encodings.dir file is 
+   /usr/X11R6/lib/X11/fonts/encodings/encodings.dir
+
+ --output (or -o)
+   
+   Specify output, default is fonts.scale in the current directory
+
+ --font-dir (or -d)
+
+   Specify TrueType font directory, default is the current directory
+
+ --default-foundry (or -f)
+
+   Specify name of the default font foundry, default is "misc"
+
+ --max-missing (or -m)
+
+   Specify the maximum number of missing characters per encoding, default 
+   is 5. This option applies to the encoding that has less than 256 
+   codepoint definitions.
+
+ --max-missing-percentage (or -a)
+
+   Specify the maximum percentage of missing characters per encoding, 
+   default is 2. This option applies to the encoding that has more than 256 
+   codepoint definitions.
+
+ --font-backend (or -b)
+
+   For X FreeType backend, use value "1", for XTT backend use value "2", 
+   default value is 1. When you have TrueType Collection font(.ttc), 
+   you need to use this option. 
+
+ --additional-entries (or -x)
+
+   Additional entries mean those extra TTCaps stuff for XTT backend, mainly 
+   for bold and italic font support. Or for FreeType backend, because FreeType 
+   still doesn't support bold and italic font, ttmkfdir can generate extra 
+   "dummy" XLFDs, so applications who asking those fonts won't complain.
+
+   Default value is "0" means off,otherwise use "1" to switch it on.
+
+ --completeness (or -c)
+
+   use less strict completeness tests for encoding tables
+
+ --panose (or -p)
+
+   use panose information
+
+LICENSE
+=======
+
+ GNU Library General Public License
+
+
+Yu Shao <yshao@redhat.com>
+8 January 2003
