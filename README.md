@@ -143,3 +143,15 @@ $ cat out
 You'll either see the success message (with code 200), or any error that the function encounters (e.g. invalid input, unable to write to S3),
 similarly to when running it locally via `sam local invoke`.
 If the return code is 200, you will see the result PDF in your bucket.
+
+## Enhancements
+
+1. Reduce the step to modify the template.yaml between local vs. cloud
+
+This is possible, and `yumda` does  provide instruction to do so. So I'll leave it for the users of this project to implement.
+
+2. Implement options for `wkhtmltopdf`
+
+Currently we only use a default option of `wkhtmltopdf`, but there are a lot more options you can  specify  to customize the
+output PDF  such as adding header/footer, change  font size,  margin, etc. `pdfkit` does support these options, so
+one can  easily modify the code to pass in more options  to the lamda function. Again, it's left as an excercise to the users.
